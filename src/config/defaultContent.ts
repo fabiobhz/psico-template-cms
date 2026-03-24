@@ -72,21 +72,21 @@ export interface SiteContent {
 
 export const defaultContent: SiteContent = {
   site: {
-    title: "Vínculo Psicologia",
-    description: "Psicologia clínica com foco em diversidade, migrantes e ciclos da vida.",
-    keywords: "psicologia, terapia, saúde mental, diversidade, migrantes",
-    logoText: "Vínculo Psicologia",
+    title: "Nome da Clínica",
+    description: "Descrição da clínica para mecanismos de busca. Edite este texto no painel de administração.",
+    keywords: "psicologia, terapia, saúde mental, bem-estar",
+    logoText: "Nome da Clínica",
   },
   nav: {
     links: [
       { label: "Sobre", href: "#sobre" },
-      { label: "Psicólogos", href: "#psicologos" },
+      { label: "Equipe", href: "#psicologos" },
       { label: "Contato", href: "#contato" },
     ],
   },
   hero: {
-    title: "Vínculo Psicologia",
-    subtitle: "Cuidado psicológico com acolhimento, ética e respeito à sua história.",
+    title: "Nome da Clínica",
+    subtitle: "Subtítulo ou slogan da sua clínica. Uma frase que transmita sua proposta de valor.",
     backgroundImage: "/assets/hero-bg.jpg",
     ctaText: "Agende uma consulta",
     ctaHref: "#contato",
@@ -94,11 +94,11 @@ export const defaultContent: SiteContent = {
   about: {
     sectionTitle: "Sobre Nós",
     paragraph1:
-      "Somos uma clínica de psicologia clínica comprometida com o acolhimento e o cuidado integral das pessoas. Acreditamos que cada história merece atenção, escuta e respeito.",
+      "Parágrafo 1 — Apresente sua clínica aqui. Fale sobre a missão, valores e o compromisso com o cuidado de cada paciente. Este é o espaço para criar uma conexão genuína com quem visita o site.",
     paragraph2:
-      "Nossa equipe é formada por psicólogos especializados em diferentes áreas, prontos para oferecer suporte em momentos de desafio, transição ou busca de autoconhecimento.",
+      "Parágrafo 2 — Continue a apresentação. Descreva a abordagem terapêutica adotada pela equipe e o que diferencia o atendimento oferecido. Mostre por que sua clínica é o lugar certo.",
     paragraph3:
-      "Atendemos presencialmente e online, com horários flexíveis para se adaptar à sua rotina.",
+      "Parágrafo 3 (opcional) — Informações complementares, como modalidades de atendimento (presencial, online), idiomas disponíveis ou grupos atendidos. Deixe em branco para omitir.",
   },
   services: {
     sectionTitle: "Nossas Especialidades",
@@ -107,80 +107,80 @@ export const defaultContent: SiteContent = {
       {
         id: "1",
         icon: "Heart",
-        title: "Público e Diversidade",
+        title: "Título do Serviço 1",
         description:
-          "Atendimento afirmativo e respeitoso para pessoas LGBTQIA+, com foco na construção de identidade e bem-estar.",
+          "Descrição do serviço 1. Explique brevemente o que é oferecido, para quem se destina e quais benefícios traz ao paciente.",
       },
       {
         id: "2",
         icon: "Brain",
-        title: "Experiência Clínica",
+        title: "Título do Serviço 2",
         description:
-          "Suporte terapêutico para ansiedade, depressão, traumas e outros desafios emocionais do cotidiano.",
+          "Descrição do serviço 2. Explique brevemente o que é oferecido, para quem se destina e quais benefícios traz ao paciente.",
       },
       {
         id: "3",
         icon: "Users",
-        title: "Ciclos da Vida",
+        title: "Título do Serviço 3",
         description:
-          "Acompanhamento nas diferentes fases da vida: infância, adolescência, vida adulta e terceira idade.",
+          "Descrição do serviço 3. Explique brevemente o que é oferecido, para quem se destina e quais benefícios traz ao paciente.",
       },
       {
         id: "4",
         icon: "Globe",
-        title: "Desafios da Migração",
+        title: "Título do Serviço 4",
         description:
-          "Apoio especializado para migrantes e expatriados que enfrentam adaptação cultural e saudade.",
+          "Descrição do serviço 4. Explique brevemente o que é oferecido, para quem se destina e quais benefícios traz ao paciente.",
       },
     ],
   },
   team: {
     sectionTitle: "Nossa Equipe",
-    sectionSubtitle: "Conheça os profissionais que fazem parte do Vínculo Psicologia",
+    sectionSubtitle: "Conheça os profissionais da clínica",
     members: [
       {
         id: "1",
-        name: "Anna Saldanha",
-        crp: "CRP 01/23456",
+        name: "Nome do Profissional 1",
+        crp: "CRP XX/XXXXX",
         description:
-          "Especialista em diversidade e identidade de gênero, com experiência em atendimento afirmativo para a comunidade LGBTQIA+.",
-        image: "/assets/AS.jpeg",
-        whatsapp: "5511999999991",
+          "Breve apresentação do profissional. Formação acadêmica, especializações e abordagem terapêutica. Este texto aparece abaixo da foto no site.",
+        image: "https://placehold.co/400x500/e8e4dc/7a6e5f?text=Foto+1",
+        whatsapp: "",
       },
       {
         id: "2",
-        name: "Michelle Marie",
-        crp: "CRP 01/34567",
+        name: "Nome do Profissional 2",
+        crp: "CRP XX/XXXXX",
         description:
-          "Psicóloga clínica com foco em ansiedade, depressão e relacionamentos interpessoais. Atende adultos e adolescentes.",
-        image: "/assets/MM.jpeg",
-        whatsapp: "5511999999992",
+          "Breve apresentação do profissional. Formação acadêmica, especializações e abordagem terapêutica. Este texto aparece abaixo da foto no site.",
+        image: "https://placehold.co/400x500/dce4e8/5f6e7a?text=Foto+2",
+        whatsapp: "",
       },
       {
         id: "3",
-        name: "Pedro Lima",
-        crp: "CRP 01/45678",
+        name: "Nome do Profissional 3",
+        crp: "CRP XX/XXXXX",
         description:
-          "Especialista em psicologia do migrante e adaptação transcultural. Fluente em português, espanhol e inglês.",
-        image: "/assets/PL.jpeg",
-        whatsapp: "5511999999993",
+          "Breve apresentação do profissional. Formação acadêmica, especializações e abordagem terapêutica. Este texto aparece abaixo da foto no site.",
+        image: "https://placehold.co/400x500/e4dce8/6e5f7a?text=Foto+3",
+        whatsapp: "",
       },
     ],
   },
   contact: {
     sectionTitle: "Entre em Contato",
     sectionSubtitle: "Agende sua consulta ou tire suas dúvidas",
-    namePlaceholder: "Seu nome",
+    namePlaceholder: "Seu nome completo",
     emailPlaceholder: "Seu e-mail",
     professionalLabel: "Escolha o profissional",
-    messagePlaceholder: "Sua mensagem",
+    messagePlaceholder: "Como podemos ajudá-lo?",
     submitText: "Enviar mensagem",
     emailjsServiceId: "",
     emailjsTemplateId: "",
     emailjsPublicKey: "",
   },
   footer: {
-    text: "© {year} Vínculo Psicologia. Todos os direitos reservados.",
+    text: "© {year} Nome da Clínica. Todos os direitos reservados.",
     privacyLabel: "Política de Privacidade",
   },
 };

@@ -4,7 +4,7 @@ import { defaultContent } from "@/config/defaultContent";
 import type { SiteTheme, ColorPalette, FontPairing } from "@/config/defaultTheme";
 import { defaultTheme, colorPalettes, fontPairings } from "@/config/defaultTheme";
 
-const STORAGE_KEY = "psico-template-config";
+const STORAGE_KEY = "psico-template-config-v2";
 
 interface SiteConfig {
   content: SiteContent;

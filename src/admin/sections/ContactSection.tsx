@@ -1,48 +1,54 @@
+import { useState } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { Field } from "../components/Field";
+import { SaveBar } from "../components/SaveBar";
 
 export const ContactSection = () => {
   const { content, updateNestedContent } = useSiteConfig();
-  const { contact } = content;
+  const [draft, setDraft] = useState(content.contact);
+  const isDirty = JSON.stringify(draft) !== JSON.stringify(content.contact);
 
-  const update = (key: keyof typeof contact, value: string) =>
-    updateNestedContent("contact", { [key]: value });
+  const update = (key: keyof typeof draft, value: string) =>
+    setDraft((d) => ({ ...d, [key]: value }));
+
+  const save = () => updateNestedContent("contact", draft);
+  const discard = () => setDraft(content.contact);
 
   return (
     <div>
       <Field
         label="Título da seção"
-        value={contact.sectionTitle}
+        value={draft.sectionTitle}
         onChange={(v) => update("sectionTitle", v)}
       />
       <Field
         label="Subtítulo (opcional)"
-        value={contact.sectionSubtitle}
+        value={draft.sectionSubtitle}
         onChange={(v) => update("sectionSubtitle", v)}
       />
       <Field
         label="Label do campo Nome"
-        value={contact.namePlaceholder}
+        value={draft.namePlaceholder}
         onChange={(v) => update("namePlaceholder", v)}
       />
       <Field
         label="Label do campo E-mail"
-        value={contact.emailPlaceholder}
+        value={draft.emailPlaceholder}
         onChange={(v) => update("emailPlaceholder", v)}
       />
       <Field
         label="Label seleção de profissional"
-        value={contact.professionalLabel}
+        value={draft.professionalLabel}
         onChange={(v) => update("professionalLabel", v)}
       />
       <Field
         label="Label campo mensagem"
-        value={contact.messagePlaceholder}
+        value={draft.messagePlaceholder}
         onChange={(v) => update("messagePlaceholder", v)}
       />
       <Field
         label="Texto do botão enviar"
-        value={contact.submitText}
+        value={draft.submitText}
         onChange={(v) => update("submitText", v)}
       />
 
@@ -52,23 +58,25 @@ export const ContactSection = () => {
         </p>
         <Field
           label="Service ID"
-          value={contact.emailjsServiceId}
+          value={draft.emailjsServiceId}
           onChange={(v) => update("emailjsServiceId", v)}
           placeholder="service_xxxxxxx"
         />
         <Field
           label="Template ID"
-          value={contact.emailjsTemplateId}
+          value={draft.emailjsTemplateId}
           onChange={(v) => update("emailjsTemplateId", v)}
           placeholder="template_xxxxxxx"
         />
         <Field
           label="Public Key"
-          value={contact.emailjsPublicKey}
+          value={draft.emailjsPublicKey}
           onChange={(v) => update("emailjsPublicKey", v)}
           placeholder="xxxxxxxxxxxxxxxxxxxx"
         />
       </div>
+
+      <SaveBar isDirty={isDirty} onSave={save} onDiscard={discard} />
     </div>
   );
 };

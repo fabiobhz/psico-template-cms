@@ -1,24 +1,30 @@
+import { useState } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { Field } from "../components/Field";
+import { SaveBar } from "../components/SaveBar";
 
 export const HeroSection = () => {
   const { content, updateNestedContent } = useSiteConfig();
-  const { hero } = content;
+  const [draft, setDraft] = useState(content.hero);
+  const isDirty = JSON.stringify(draft) !== JSON.stringify(content.hero);
 
-  const update = (key: keyof typeof hero, value: string) =>
-    updateNestedContent("hero", { [key]: value });
+  const update = (key: keyof typeof draft, value: string) =>
+    setDraft((d) => ({ ...d, [key]: value }));
+
+  const save = () => updateNestedContent("hero", draft);
+  const discard = () => setDraft(content.hero);
 
   return (
     <div>
       <Field
         label="Título principal"
-        value={hero.title}
+        value={draft.title}
         onChange={(v) => update("title", v)}
         placeholder="Nome da clínica ou título"
       />
       <Field
         label="Subtítulo / Slogan"
-        value={hero.subtitle}
+        value={draft.subtitle}
         onChange={(v) => update("subtitle", v)}
         placeholder="Uma frase que transmita sua proposta"
         multiline
@@ -26,32 +32,33 @@ export const HeroSection = () => {
       />
       <Field
         label="Texto do botão (opcional)"
-        value={hero.ctaText}
+        value={draft.ctaText}
         onChange={(v) => update("ctaText", v)}
         placeholder="Ex: Agende uma consulta"
       />
       <Field
         label="Link do botão"
-        value={hero.ctaHref}
+        value={draft.ctaHref}
         onChange={(v) => update("ctaHref", v)}
         placeholder="#contato"
       />
       <Field
         label="Imagem de fundo (URL ou caminho)"
-        value={hero.backgroundImage}
+        value={draft.backgroundImage}
         onChange={(v) => update("backgroundImage", v)}
         placeholder="/assets/hero-bg.jpg"
       />
-      {hero.backgroundImage && (
+      {draft.backgroundImage && (
         <div className="mt-2 rounded-lg overflow-hidden border border-[#e0dbd5]">
           <img
-            src={hero.backgroundImage}
+            src={draft.backgroundImage}
             alt="Preview"
             className="w-full h-28 object-cover"
             onError={(e) => (e.currentTarget.style.display = "none")}
           />
         </div>
       )}
+      <SaveBar isDirty={isDirty} onSave={save} onDiscard={discard} />
     </div>
   );
 };

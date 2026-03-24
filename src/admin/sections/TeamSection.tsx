@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { Field } from "../components/Field";
+import { SaveBar } from "../components/SaveBar";
 import type { TeamMember } from "@/config/defaultContent";
 import { Plus, Trash2 } from "lucide-react";
 
@@ -14,36 +16,39 @@ const newMember = (): TeamMember => ({
 
 export const TeamSection = () => {
   const { content, updateNestedContent } = useSiteConfig();
-  const { team } = content;
+  const [draft, setDraft] = useState(content.team);
+  const isDirty = JSON.stringify(draft) !== JSON.stringify(content.team);
 
-  const updateMember = (id: string, key: keyof TeamMember, value: string) => {
-    const updated = team.members.map((m) => (m.id === id ? { ...m, [key]: value } : m));
-    updateNestedContent("team", { members: updated });
-  };
+  const updateMember = (id: string, key: keyof TeamMember, value: string) =>
+    setDraft((d) => ({
+      ...d,
+      members: d.members.map((m) => (m.id === id ? { ...m, [key]: value } : m)),
+    }));
 
-  const addMember = () => {
-    updateNestedContent("team", { members: [...team.members, newMember()] });
-  };
+  const addMember = () =>
+    setDraft((d) => ({ ...d, members: [...d.members, newMember()] }));
 
-  const removeMember = (id: string) => {
-    updateNestedContent("team", { members: team.members.filter((m) => m.id !== id) });
-  };
+  const removeMember = (id: string) =>
+    setDraft((d) => ({ ...d, members: d.members.filter((m) => m.id !== id) }));
+
+  const save = () => updateNestedContent("team", draft);
+  const discard = () => setDraft(content.team);
 
   return (
     <div>
       <Field
         label="Título da seção"
-        value={team.sectionTitle}
-        onChange={(v) => updateNestedContent("team", { sectionTitle: v })}
+        value={draft.sectionTitle}
+        onChange={(v) => setDraft((d) => ({ ...d, sectionTitle: v }))}
       />
       <Field
         label="Subtítulo (opcional)"
-        value={team.sectionSubtitle}
-        onChange={(v) => updateNestedContent("team", { sectionSubtitle: v })}
+        value={draft.sectionSubtitle}
+        onChange={(v) => setDraft((d) => ({ ...d, sectionSubtitle: v }))}
       />
 
       <div className="mt-4 space-y-4">
-        {team.members.map((member, idx) => (
+        {draft.members.map((member, idx) => (
           <div key={member.id} className="border border-[#e5e0d8] rounded-xl p-4 bg-[#faf8f6]">
             <div className="flex items-center justify-between mb-3">
               <p className="text-xs font-semibold text-[#8fa68c] uppercase tracking-wider">
@@ -111,6 +116,8 @@ export const TeamSection = () => {
         <Plus size={16} />
         Adicionar profissional
       </button>
+
+      <SaveBar isDirty={isDirty} onSave={save} onDiscard={discard} />
     </div>
   );
 };

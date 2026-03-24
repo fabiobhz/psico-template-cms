@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
 import type { SiteContent } from "@/config/defaultContent";
 import { defaultContent } from "@/config/defaultContent";
 import type { SiteTheme, ColorPalette, FontPairing } from "@/config/defaultTheme";
@@ -29,11 +29,24 @@ interface SiteConfigContextValue {
 
 const SiteConfigContext = createContext<SiteConfigContextValue | null>(null);
 
+function parseStoredConfig(raw: string | null): SiteConfig | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed.content || !parsed.theme) return null;
+    return {
+      content: { ...defaultContent, ...parsed.content },
+      theme: { ...defaultTheme, ...parsed.theme },
+    };
+  } catch {
+    return null;
+  }
+}
+
 function applyThemeVars(palette: ColorPalette, font: FontPairing) {
   const root = document.documentElement;
   const { vars } = palette;
 
-  // Override Tailwind @theme CSS variables at runtime
   root.style.setProperty("--color-primary", vars.primary);
   root.style.setProperty("--color-primary-foreground", vars.background);
   root.style.setProperty("--color-secondary", vars.surface);
@@ -50,11 +63,9 @@ function applyThemeVars(palette: ColorPalette, font: FontPairing) {
   root.style.setProperty("--color-input", vars.border);
   root.style.setProperty("--color-ring", vars.primary);
 
-  // Dynamic font CSS custom properties
   root.style.setProperty("--cms-font-heading", font.headingClass);
   root.style.setProperty("--cms-font-body", font.bodyClass);
 
-  // Update Google Fonts link
   let fontLink = document.getElementById("cms-google-fonts") as HTMLLinkElement | null;
   if (!fontLink) {
     fontLink = document.createElement("link");
@@ -67,35 +78,45 @@ function applyThemeVars(palette: ColorPalette, font: FontPairing) {
 
 export function SiteConfigProvider({ children }: { children: React.ReactNode }) {
   const [config, setConfig] = useState<SiteConfig>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        return {
-          content: { ...defaultContent, ...parsed.content },
-          theme: { ...defaultTheme, ...parsed.theme },
-        };
-      }
-    } catch {
-      // ignore
-    }
-    return { content: defaultContent, theme: defaultTheme };
+    return parseStoredConfig(localStorage.getItem(STORAGE_KEY)) ?? {
+      content: defaultContent,
+      theme: defaultTheme,
+    };
   });
+
+  // Track if we are the one writing to localStorage (to avoid re-reading our own writes)
+  const isWritingRef = useRef(false);
 
   const currentPalette =
     colorPalettes.find((p) => p.id === config.theme.colorPaletteId) ?? colorPalettes[0];
   const currentFont =
     fontPairings.find((f) => f.id === config.theme.fontPairingId) ?? fontPairings[0];
 
-  // Apply theme whenever it changes
+  // Apply theme CSS vars whenever theme changes
   useEffect(() => {
     applyThemeVars(currentPalette, currentFont);
   }, [currentPalette, currentFont]);
 
-  // Persist to localStorage
+  // Persist to localStorage whenever config changes
   useEffect(() => {
+    isWritingRef.current = true;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+    // Reset flag after the storage event would have fired
+    requestAnimationFrame(() => {
+      isWritingRef.current = false;
+    });
   }, [config]);
+
+  // Cross-tab sync: listen for storage events from other tabs (e.g. preview ← admin)
+  useEffect(() => {
+    const handler = (e: StorageEvent) => {
+      if (e.key !== STORAGE_KEY || isWritingRef.current) return;
+      const parsed = parseStoredConfig(e.newValue);
+      if (parsed) setConfig(parsed);
+    };
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
+  }, []);
 
   const updateContent = useCallback((updates: Partial<SiteContent>) => {
     setConfig((prev) => ({
@@ -134,17 +155,10 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
   }, [config]);
 
   const importConfig = useCallback((json: string): boolean => {
-    try {
-      const parsed = JSON.parse(json);
-      if (!parsed.content || !parsed.theme) return false;
-      setConfig({
-        content: { ...defaultContent, ...parsed.content },
-        theme: { ...defaultTheme, ...parsed.theme },
-      });
-      return true;
-    } catch {
-      return false;
-    }
+    const parsed = parseStoredConfig(json);
+    if (!parsed) return false;
+    setConfig(parsed);
+    return true;
   }, []);
 
   return (

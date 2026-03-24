@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { Field } from "../components/Field";
+import { SaveBar } from "../components/SaveBar";
 import type { Service } from "@/config/defaultContent";
 
 const ICON_OPTIONS = [
@@ -9,29 +11,32 @@ const ICON_OPTIONS = [
 
 export const ServicesSection = () => {
   const { content, updateNestedContent } = useSiteConfig();
-  const { services } = content;
+  const [draft, setDraft] = useState(content.services);
+  const isDirty = JSON.stringify(draft) !== JSON.stringify(content.services);
 
-  const updateService = (id: string, key: keyof Service, value: string) => {
-    const updated = services.items.map((s) =>
-      s.id === id ? { ...s, [key]: value } : s
-    );
-    updateNestedContent("services", { items: updated });
-  };
+  const updateService = (id: string, key: keyof Service, value: string) =>
+    setDraft((d) => ({
+      ...d,
+      items: d.items.map((s) => (s.id === id ? { ...s, [key]: value } : s)),
+    }));
+
+  const save = () => updateNestedContent("services", draft);
+  const discard = () => setDraft(content.services);
 
   return (
     <div>
       <Field
         label="Título da seção"
-        value={services.sectionTitle}
-        onChange={(v) => updateNestedContent("services", { sectionTitle: v })}
+        value={draft.sectionTitle}
+        onChange={(v) => setDraft((d) => ({ ...d, sectionTitle: v }))}
       />
       <Field
         label="Subtítulo (opcional)"
-        value={services.sectionSubtitle}
-        onChange={(v) => updateNestedContent("services", { sectionSubtitle: v })}
+        value={draft.sectionSubtitle}
+        onChange={(v) => setDraft((d) => ({ ...d, sectionSubtitle: v }))}
       />
       <div className="mt-4 space-y-4">
-        {services.items.map((service, idx) => (
+        {draft.items.map((service, idx) => (
           <div key={service.id} className="border border-[#e5e0d8] rounded-xl p-4 bg-[#faf8f6]">
             <p className="text-xs font-semibold text-[#8fa68c] uppercase tracking-wider mb-3">
               Serviço {idx + 1}
@@ -71,6 +76,7 @@ export const ServicesSection = () => {
           </div>
         ))}
       </div>
+      <SaveBar isDirty={isDirty} onSave={save} onDiscard={discard} />
     </div>
   );
 };

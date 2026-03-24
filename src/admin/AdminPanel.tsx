@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import {
   Palette,
   LayoutTemplate,
@@ -10,8 +9,9 @@ import {
   Download,
   Upload,
   RotateCcw,
-  Eye,
+  ExternalLink,
   X,
+  MonitorSmartphone,
 } from "lucide-react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { SectionCard } from "./components/SectionCard";
@@ -27,6 +27,7 @@ export const AdminPanel = () => {
   const { resetToDefaults, exportConfig, importConfig } = useSiteConfig();
   const [toast, setToast] = useState<{ msg: string; type: "ok" | "err" } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const previewWindowRef = useRef<Window | null>(null);
 
   const showToast = (msg: string, type: "ok" | "err" = "ok") => {
     setToast({ msg, type });
@@ -65,8 +66,21 @@ export const AdminPanel = () => {
     }
   };
 
+  const openPreview = () => {
+    // If preview window is already open, focus it; otherwise open a new one
+    if (previewWindowRef.current && !previewWindowRef.current.closed) {
+      previewWindowRef.current.focus();
+      previewWindowRef.current.location.reload();
+    } else {
+      previewWindowRef.current = window.open("/", "_blank", "noopener");
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col" style={{ fontFamily: "'Inter', system-ui, sans-serif", backgroundColor: "#f5f1ec" }}>
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ fontFamily: "'Inter', system-ui, sans-serif", backgroundColor: "#f5f1ec" }}
+    >
       {/* Header */}
       <header className="sticky top-0 z-40 bg-white border-b border-[#e0dbd5] shadow-sm">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
@@ -81,13 +95,16 @@ export const AdminPanel = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <Link
-              to="/"
+            {/* Ver site — opens in new tab */}
+            <a
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs text-[#7a6e5f] border border-[#ddd8d2] rounded-lg px-3 py-1.5 hover:bg-[#f0ede8] transition-colors"
             >
-              <Eye size={13} />
+              <ExternalLink size={13} />
               Ver site
-            </Link>
+            </a>
             <button
               onClick={handleExport}
               className="flex items-center gap-1.5 text-xs text-white bg-[#8fa68c] rounded-lg px-3 py-1.5 hover:bg-[#7a9278] transition-colors"
@@ -120,6 +137,16 @@ export const AdminPanel = () => {
           <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} className="hidden" />
         </div>
 
+        {/* Info banner */}
+        <div className="bg-[#edf3ed] border border-[#c8ddc8] rounded-xl px-4 py-3 text-xs text-[#4a6e4a] flex items-start gap-2">
+          <MonitorSmartphone size={14} className="flex-shrink-0 mt-0.5" />
+          <span>
+            Edite o conteúdo de cada seção e clique em <strong>Salvar seção</strong>. Use{" "}
+            <strong>Pré-visualizar</strong> para ver as alterações em tempo real numa nova aba — ela
+            atualiza automaticamente após cada salvamento.
+          </span>
+        </div>
+
         <SectionCard title="Tema — Cores & Fontes" icon={<Palette size={16} />} defaultOpen>
           <ThemeSection />
         </SectionCard>
@@ -149,19 +176,26 @@ export const AdminPanel = () => {
         </SectionCard>
 
         <p className="text-center text-[10px] text-[#b0a898] pb-6">
-          As alterações são salvas automaticamente no navegador.
+          As alterações são salvas automaticamente após clicar em "Salvar seção".
           <br />
-          Use "Exportar" para salvar o arquivo de configuração definitivo.
+          Use "Exportar" para guardar o arquivo de configuração definitivo.
         </p>
       </main>
+
+      {/* Floating preview button */}
+      <button
+        onClick={openPreview}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#3d3530] text-white text-sm font-medium px-5 py-3 rounded-full shadow-xl hover:bg-[#2a2520] transition-all duration-200 hover:scale-105 active:scale-95"
+      >
+        <MonitorSmartphone size={16} />
+        Pré-visualizar
+      </button>
 
       {/* Toast */}
       {toast && (
         <div
-          className={`fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 px-5 py-3 rounded-xl shadow-xl text-sm font-medium transition-all z-50 ${
-            toast.type === "ok"
-              ? "bg-[#3d3530] text-white"
-              : "bg-[#c0897a] text-white"
+          className={`fixed bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-3 px-5 py-3 rounded-xl shadow-xl text-sm font-medium z-50 ${
+            toast.type === "ok" ? "bg-[#3d3530] text-white" : "bg-[#c0897a] text-white"
           }`}
         >
           {toast.msg}

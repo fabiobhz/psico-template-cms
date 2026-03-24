@@ -217,3 +217,35 @@ export const defaultTheme: SiteTheme = {
   colorPaletteId: "sage-earth",
   fontPairingId: "classic",
 };
+
+export function applyThemeVars(palette: ColorPalette, font: FontPairing) {
+  const root = document.documentElement;
+  const { vars } = palette;
+
+  root.style.setProperty("--color-primary", vars.primary);
+  root.style.setProperty("--color-primary-foreground", vars.background);
+  root.style.setProperty("--color-secondary", vars.surface);
+  root.style.setProperty("--color-secondary-foreground", vars.text);
+  root.style.setProperty("--color-accent", vars.accent);
+  root.style.setProperty("--color-accent-foreground", vars.text);
+  root.style.setProperty("--color-background", vars.background);
+  root.style.setProperty("--color-foreground", vars.text);
+  root.style.setProperty("--color-card", vars.surface);
+  root.style.setProperty("--color-card-foreground", vars.text);
+  root.style.setProperty("--color-muted", vars.surface);
+  root.style.setProperty("--color-muted-foreground", vars.textMuted);
+  root.style.setProperty("--color-border", vars.border);
+  root.style.setProperty("--color-input", vars.border);
+  root.style.setProperty("--color-ring", vars.primary);
+  root.style.setProperty("--cms-font-heading", font.headingClass);
+  root.style.setProperty("--cms-font-body", font.bodyClass);
+
+  let fontLink = document.getElementById("cms-google-fonts") as HTMLLinkElement | null;
+  if (!fontLink) {
+    fontLink = document.createElement("link");
+    fontLink.id = "cms-google-fonts";
+    fontLink.rel = "stylesheet";
+    document.head.appendChild(fontLink);
+  }
+  fontLink.href = font.googleFontsUrl;
+}

@@ -79,7 +79,7 @@ export const TeamSection = () => {
                   onChange={(v) => updateMember(member.id, "name", v)}
                 />
                 <Field
-                  label="Registro (CRP, CRM...)"
+                  label="Cargo ou registro"
                   value={member.crp}
                   onChange={(v) => updateMember(member.id, "crp", v)}
                 />

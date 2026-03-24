@@ -1,8 +1,30 @@
+import { useState, useEffect } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
-import { colorPalettes, fontPairings } from "@/config/defaultTheme";
+import { colorPalettes, fontPairings, applyThemeVars } from "@/config/defaultTheme";
+import type { SiteTheme } from "@/config/defaultTheme";
+import { SaveBar } from "../components/SaveBar";
 
 export const ThemeSection = () => {
-  const { theme, updateTheme } = useSiteConfig();
+  const { theme, currentPalette, currentFont, updateTheme } = useSiteConfig();
+  const [draft, setDraft] = useState<SiteTheme>(theme);
+  const isDirty =
+    draft.colorPaletteId !== theme.colorPaletteId ||
+    draft.fontPairingId !== theme.fontPairingId;
+
+  // Apply theme vars for live preview whenever draft changes
+  useEffect(() => {
+    const palette = colorPalettes.find((p) => p.id === draft.colorPaletteId) ?? colorPalettes[0];
+    const font = fontPairings.find((f) => f.id === draft.fontPairingId) ?? fontPairings[0];
+    applyThemeVars(palette, font);
+  }, [draft]);
+
+  const save = () => updateTheme(draft);
+
+  const discard = () => {
+    setDraft(theme);
+    // Revert CSS vars to committed theme
+    applyThemeVars(currentPalette, currentFont);
+  };
 
   return (
     <div className="space-y-8">
@@ -13,11 +35,11 @@ export const ThemeSection = () => {
         </p>
         <div className="grid grid-cols-2 gap-3">
           {colorPalettes.map((palette) => {
-            const isActive = theme.colorPaletteId === palette.id;
+            const isActive = draft.colorPaletteId === palette.id;
             return (
               <button
                 key={palette.id}
-                onClick={() => updateTheme({ colorPaletteId: palette.id })}
+                onClick={() => setDraft((d) => ({ ...d, colorPaletteId: palette.id }))}
                 className={`relative text-left p-3 rounded-xl border-2 transition-all duration-200 ${
                   isActive
                     ? "border-[#8fa68c] bg-white shadow-md"
@@ -27,11 +49,16 @@ export const ThemeSection = () => {
                 {isActive && (
                   <span className="absolute top-2 right-2 w-4 h-4 bg-[#8fa68c] rounded-full flex items-center justify-center">
                     <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
-                      <path d="M1 3L3 5L7 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path
+                        d="M1 3L3 5L7 1"
+                        stroke="white"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
                     </svg>
                   </span>
                 )}
-                {/* Color swatches */}
                 <div className="flex gap-1 mb-2">
                   {palette.preview.map((color, i) => (
                     <div
@@ -56,11 +83,11 @@ export const ThemeSection = () => {
         </p>
         <div className="grid grid-cols-1 gap-2">
           {fontPairings.map((font) => {
-            const isActive = theme.fontPairingId === font.id;
+            const isActive = draft.fontPairingId === font.id;
             return (
               <button
                 key={font.id}
-                onClick={() => updateTheme({ fontPairingId: font.id })}
+                onClick={() => setDraft((d) => ({ ...d, fontPairingId: font.id }))}
                 className={`flex items-center gap-4 p-3 rounded-xl border-2 text-left transition-all duration-200 ${
                   isActive
                     ? "border-[#8fa68c] bg-white shadow-md"
@@ -77,17 +104,11 @@ export const ThemeSection = () => {
                   <p className="text-[10px] text-[#9e9086]">{font.description}</p>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <p
-                    className="text-base text-[#3d3530]"
-                    style={{ fontFamily: font.headingClass }}
-                  >
+                  <p className="text-base text-[#3d3530]" style={{ fontFamily: font.headingClass }}>
                     Título
                   </p>
-                  <p
-                    className="text-[10px] text-[#7a6e5f]"
-                    style={{ fontFamily: font.bodyClass }}
-                  >
-                    Texto
+                  <p className="text-[10px] text-[#7a6e5f]" style={{ fontFamily: font.bodyClass }}>
+                    Texto do corpo
                   </p>
                 </div>
               </button>
@@ -95,6 +116,8 @@ export const ThemeSection = () => {
           })}
         </div>
       </div>
+
+      <SaveBar isDirty={isDirty} onSave={save} onDiscard={discard} />
     </div>
   );
 };

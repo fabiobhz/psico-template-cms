@@ -4,7 +4,7 @@ import { defaultContent } from "@/config/defaultContent";
 import type { SiteTheme, ColorPalette, FontPairing } from "@/config/defaultTheme"; // ColorPalette, FontPairing used by derived values below
 import { defaultTheme, colorPalettes, fontPairings, applyThemeVars } from "@/config/defaultTheme";
 
-const STORAGE_KEY = "psico-template-config-v2";
+const STORAGE_KEY = "psico-template-config-v3";
 
 interface SiteConfig {
   content: SiteContent;

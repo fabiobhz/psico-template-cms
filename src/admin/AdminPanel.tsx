@@ -21,7 +21,11 @@ import {
   MonitorSmartphone,
   Globe,
   MessageSquare,
+  LogOut,
 } from "lucide-react";
+
+const SESSION_KEY = "fagom_admin_auth";
+const isProtected = !!import.meta.env.VITE_ADMIN_PASSWORD;
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { SectionCard } from "./components/SectionCard";
 import { ThemeSection } from "./sections/ThemeSection";
@@ -106,7 +110,7 @@ export const AdminPanel = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Ver site — opens in new tab */}
+            {/* View site — opens in new tab */}
             <a
               href="/"
               target="_blank"
@@ -116,6 +120,20 @@ export const AdminPanel = () => {
               <ExternalLink size={13} />
               View site
             </a>
+            {/* Logout — only shown when password protection is active */}
+            {isProtected && (
+              <button
+                onClick={() => {
+                  sessionStorage.removeItem(SESSION_KEY);
+                  window.location.reload();
+                }}
+                title="Lock admin panel"
+                className="flex items-center gap-1.5 text-xs text-[#9e9086] border border-[#ddd8d2] rounded-lg px-3 py-1.5 hover:bg-[#f0ede8] transition-colors"
+              >
+                <LogOut size={13} />
+                Lock
+              </button>
+            )}
             <button
               onClick={handleExport}
               className="flex items-center gap-1.5 text-xs text-white bg-[#8fa68c] rounded-lg px-3 py-1.5 hover:bg-[#7a9278] transition-colors"

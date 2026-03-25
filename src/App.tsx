@@ -15,6 +15,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookieConsent from "./components/CookieConsent";
 import DynamicMeta from "./components/DynamicMeta";
 import { AdminPanel } from "./admin/AdminPanel";
+import AdminGuard from "./admin/AdminGuard";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/admin" element={<AdminGuard><AdminPanel /></AdminGuard>} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />

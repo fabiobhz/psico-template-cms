@@ -1,3 +1,8 @@
+# Environment variables (contains sensitive passwords — never commit)
+.env
+.env.local
+.env.production
+
 # Logs
 logs
 *.log

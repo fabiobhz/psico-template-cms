@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { Link } from "react-router-dom";
 
 const NotFound = () => {
@@ -5,9 +12,9 @@ const NotFound = () => {
     <div className="flex min-h-screen items-center justify-center bg-muted">
       <div className="text-center">
         <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Página não encontrada</p>
+        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
         <Link to="/" className="text-primary underline hover:text-primary/90">
-          Voltar ao início
+          Back to home
         </Link>
       </div>
     </div>

@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -6,7 +13,7 @@ const ThankYou = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Redireciona para home se o usuário acessar a URL diretamente
+  // Redirect to home if the user navigates directly to this URL
   useEffect(() => {
     if (!location.state?.fromForm) {
       navigate("/", { replace: true });
@@ -25,7 +32,7 @@ const ThankYou = () => {
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="heading-display text-5xl md:text-6xl text-foreground mb-4"
         >
-          Obrigado!
+          Thank you!
         </motion.h1>
 
         <motion.div
@@ -41,8 +48,8 @@ const ThankYou = () => {
           transition={{ duration: 0.8, delay: 0.9 }}
           className="text-body text-muted-foreground text-base md:text-lg leading-[1.9] mb-10"
         >
-          Sua mensagem foi recebida com sucesso. Em breve um dos nossos psicólogos
-          entrará em contato pelo e-mail informado.
+          Your message has been received. We will get back to you
+          at the email address you provided shortly.
         </motion.p>
 
         <motion.div
@@ -54,7 +61,7 @@ const ThankYou = () => {
             to="/"
             className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-md text-sm font-body tracking-wider hover:bg-primary/90 transition-colors duration-300"
           >
-            Voltar ao início
+            Back to home
           </Link>
         </motion.div>
 

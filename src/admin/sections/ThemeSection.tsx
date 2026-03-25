@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useState, useEffect } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { colorPalettes, fontPairings, applyThemeVars } from "@/config/defaultTheme";
@@ -31,7 +38,7 @@ export const ThemeSection = () => {
       {/* Color Palettes */}
       <div>
         <p className="text-xs font-medium text-[#7a6e5f] uppercase tracking-wider mb-3">
-          Paleta de Cores
+          Color Palette
         </p>
         <div className="grid grid-cols-2 gap-3">
           {colorPalettes.map((palette) => {
@@ -79,7 +86,7 @@ export const ThemeSection = () => {
       {/* Font Pairings */}
       <div>
         <p className="text-xs font-medium text-[#7a6e5f] uppercase tracking-wider mb-3">
-          Combinação de Fontes
+          Font Pairing
         </p>
         <div className="grid grid-cols-1 gap-2">
           {fontPairings.map((font) => {
@@ -105,10 +112,10 @@ export const ThemeSection = () => {
                 </div>
                 <div className="text-right flex-shrink-0">
                   <p className="text-base text-[#3d3530]" style={{ fontFamily: font.headingClass }}>
-                    Título
+                    Heading
                   </p>
                   <p className="text-[10px] text-[#7a6e5f]" style={{ fontFamily: font.bodyClass }}>
-                    Texto do corpo
+                    Body text
                   </p>
                 </div>
               </button>

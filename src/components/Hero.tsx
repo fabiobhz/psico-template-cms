@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { motion } from "framer-motion";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 
@@ -12,14 +19,14 @@ const Hero = () => {
         alt={hero.title}
         className="absolute inset-0 w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-background/30" />
+      <div className="absolute inset-0 bg-black/25" />
 
       <div className="relative text-center z-10">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="heading-display text-7xl md:text-9xl text-foreground"
+          className="heading-display text-7xl md:text-9xl text-white"
         >
           {hero.title}
         </motion.h1>
@@ -35,7 +42,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="text-body text-sm tracking-[0.3em] text-muted-foreground mt-4 uppercase"
+          className="text-body text-sm tracking-[0.3em] text-white/70 mt-4 uppercase"
         >
           {hero.subtitle}
         </motion.p>
@@ -46,7 +53,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.6 }}
-            className="mt-8 inline-block border border-foreground/40 text-foreground text-xs tracking-[0.2em] uppercase px-8 py-3 font-body hover:bg-foreground/10 transition-colors duration-300"
+            className="mt-8 inline-block border border-white/40 text-white/90 text-xs tracking-[0.2em] uppercase px-8 py-3 font-body hover:bg-white/10 transition-colors duration-300"
           >
             {hero.ctaText}
           </motion.a>

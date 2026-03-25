@@ -1,0 +1,102 @@
+================================================================================
+         END USER LICENSE AGREEMENT (EULA) — FAGOM
+================================================================================
+Last Updated: 2026-03-25
+
+This End User License Agreement ("Agreement") is a legal agreement between you
+(either an individual or a legal entity) and Fagom for the use of the software
+template, source code, integrated CMS, and associated documentation
+(the "Software").
+
+By downloading, installing, or using the Software, you agree to be bound by the
+terms of this Agreement. If you do not agree, do not use the Software.
+
+--------------------------------------------------------------------------------
+1. GRANT OF LICENSE
+--------------------------------------------------------------------------------
+
+Subject to the terms of this Agreement, Fagom grants you a limited,
+non-exclusive, and non-transferable license to:
+
+  a) Install and use the Software to create one (1) single end-project/website.
+
+  b) Modify the source code for customization purposes for that end-project,
+     provided you comply with the restrictions set forth in Section 2.
+
+--------------------------------------------------------------------------------
+2. RESTRICTIONS OF USE
+--------------------------------------------------------------------------------
+
+You may not, and may not permit third parties to:
+
+  a) Redistribution
+     Sell, rent, lease, license, distribute, or host the Software (or any part
+     of it) as a stock item, template, or on any other marketplace.
+
+  b) CMS Reverse Engineering
+     Attempt to decompile, decrypt, or reverse engineer the structural logic of
+     the proprietary Fagom CMS to create derivative products.
+
+  c) Mass Use
+     Use a single license for multiple websites or clients. Each website
+     requires an individual license.
+
+  d) Removal of Credits
+     Remove any copyright notices or Fagom trademarks contained within the
+     original source code.
+
+--------------------------------------------------------------------------------
+3. INTELLECTUAL PROPERTY
+--------------------------------------------------------------------------------
+
+Fagom retains all rights, titles, and interests in and to the Software,
+including all intellectual property rights (copyrights, patents, trade secrets).
+
+This Agreement does not transfer ownership of the Software to you — only the
+limited right to use it as described herein.
+
+--------------------------------------------------------------------------------
+4. SUPPORT AND UPDATES
+--------------------------------------------------------------------------------
+
+  a) Fagom may provide security updates or bug fixes at its sole discretion.
+
+  b) Technical support is limited to inherent bugs in the original code and does
+     not cover issues caused by user modifications or third-party hosting
+     services.
+
+--------------------------------------------------------------------------------
+5. DISCLAIMER OF WARRANTY AND LIMITATION OF LIABILITY
+--------------------------------------------------------------------------------
+
+  a) "As Is"
+     The Software is provided without warranty of any kind, express or implied.
+     Fagom does not guarantee that the Software will meet all your requirements
+     or operate uninterrupted in all server environments.
+
+  b) Limitation of Damages
+     In no event shall Fagom be liable for any damages (including loss of
+     profits, business interruption, or loss of data) arising out of the use or
+     inability to use this Software, even if Fagom has been advised of the
+     possibility of such damages.
+
+--------------------------------------------------------------------------------
+6. TERMINATION
+--------------------------------------------------------------------------------
+
+This license will terminate automatically if you violate any of the terms of
+this Agreement. Upon termination, you must cease all use of the Software and
+destroy all copies in your possession.
+
+--------------------------------------------------------------------------------
+7. JURISDICTION AND GOVERNING LAW
+--------------------------------------------------------------------------------
+
+This Agreement shall be governed by and construed in accordance with the laws
+of Spain, without regard to conflicts of law principles. Any dispute arising
+from this Agreement shall be resolved exclusively in the competent courts of
+Valencia.
+
+================================================================================
+  Copyright © 2026 Fagom. All rights reserved.
+================================================================================

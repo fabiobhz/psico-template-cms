@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import AnimatedSection from "./AnimatedSection";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 
@@ -18,7 +25,7 @@ const Team = () => {
   const { team } = content;
 
   return (
-    <section id="psicologos" className="py-28 md:py-36">
+    <section id="team" className="py-28 md:py-36">
       <div className="container max-w-5xl">
         <div className="text-center mb-16">
           <AnimatedSection>
@@ -38,7 +45,7 @@ const Team = () => {
           {team.members.map((person, index) => (
             <AnimatedSection key={person.id} delay={index * 0.15}>
               <div className="text-center group">
-                <div className="overflow-hidden rounded-lg mb-6 aspect-[4/5]">
+                <div className="overflow-hidden rounded-lg mb-6 aspect-[4/5] bg-secondary">
                   <img
                     src={person.image}
                     alt={person.name}
@@ -57,14 +64,14 @@ const Team = () => {
                 {person.whatsapp && (
                   <a
                     href={`https://wa.me/${person.whatsapp}?text=${encodeURIComponent(
-                      `Olá, ${person.name}! Estive no site e gostaria de agendar uma consulta.`
+                      `Hi ${person.name}, I visited your website and would like to schedule an appointment.`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-sm font-body text-[#25D366] hover:text-[#1ebe5d] transition-colors duration-300"
                   >
                     <WhatsAppIcon />
-                    Fale por WhatsApp
+                    Chat on WhatsApp
                   </a>
                 )}
               </div>

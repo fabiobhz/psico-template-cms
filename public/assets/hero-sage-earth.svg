@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 900" width="1920" height="900">
+  <defs>
+    <linearGradient id="base" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1920" y2="900">
+      <stop offset="0%"   stop-color="#1A3E1A"/>
+      <stop offset="55%"  stop-color="#28502A"/>
+      <stop offset="100%" stop-color="#2E4A20"/>
+    </linearGradient>
+    <radialGradient id="vig" gradientUnits="userSpaceOnUse" cx="960" cy="450" r="1050">
+      <stop offset="0%"   stop-color="transparent"/>
+      <stop offset="75%"  stop-color="#1A3E1A" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#1A3E1A" stop-opacity="0.52"/>
+    </radialGradient>
+    <filter id="b1"><feGaussianBlur stdDeviation="100"/></filter>
+    <filter id="b2"><feGaussianBlur stdDeviation="140"/></filter>
+  </defs>
+
+  <rect width="1920" height="900" fill="url(#base)"/>
+
+  <circle cx="380"  cy="280"  r="440" fill="#4A7848" opacity="0.55" filter="url(#b2)"/>
+  <circle cx="1520" cy="620"  r="380" fill="#7A6040" opacity="0.42" filter="url(#b2)"/>
+  <circle cx="980"  cy="80"   r="320" fill="#509050" opacity="0.38" filter="url(#b1)"/>
+  <circle cx="260"  cy="750"  r="260" fill="#9B8060" opacity="0.28" filter="url(#b1)"/>
+  <circle cx="1680" cy="180"  r="280" fill="#3A6830" opacity="0.35" filter="url(#b1)"/>
+
+  <line x1="0" y1="298" x2="1920" y2="298" stroke="#7AAA7A" stroke-width="0.6" opacity="0.14"/>
+  <line x1="0" y1="600" x2="1920" y2="600" stroke="#7AAA7A" stroke-width="0.4" opacity="0.09"/>
+
+  <rect width="1920" height="900" fill="url(#vig)"/>
+</svg>

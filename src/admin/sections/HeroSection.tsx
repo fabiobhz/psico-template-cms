@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useState } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { Field } from "../components/Field";
@@ -17,33 +24,33 @@ export const HeroSection = () => {
   return (
     <div>
       <Field
-        label="Título principal"
+        label="Main title"
         value={draft.title}
         onChange={(v) => update("title", v)}
-        placeholder="Nome da clínica ou título"
+        placeholder="Your brand or site name"
       />
       <Field
-        label="Subtítulo / Slogan"
+        label="Subtitle / Tagline"
         value={draft.subtitle}
         onChange={(v) => update("subtitle", v)}
-        placeholder="Uma frase que transmita sua proposta"
+        placeholder="A phrase that captures your value proposition"
         multiline
         rows={2}
       />
       <Field
-        label="Texto do botão (opcional)"
+        label="Button text (optional)"
         value={draft.ctaText}
         onChange={(v) => update("ctaText", v)}
-        placeholder="Ex: Agende uma consulta"
+        placeholder="e.g. Get in touch"
       />
       <Field
-        label="Link do botão"
+        label="Button link"
         value={draft.ctaHref}
         onChange={(v) => update("ctaHref", v)}
-        placeholder="#contato"
+        placeholder="#contact"
       />
       <Field
-        label="Imagem de fundo (URL ou caminho)"
+        label="Background image (URL or path)"
         value={draft.backgroundImage}
         onChange={(v) => update("backgroundImage", v)}
         placeholder="/assets/hero-bg.jpg"

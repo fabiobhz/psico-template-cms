@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 900" width="1920" height="900">
+  <defs>
+    <linearGradient id="base" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1920" y2="900">
+      <stop offset="0%"   stop-color="#0E1830"/>
+      <stop offset="50%"  stop-color="#162238"/>
+      <stop offset="100%" stop-color="#1C2A42"/>
+    </linearGradient>
+    <radialGradient id="vig" gradientUnits="userSpaceOnUse" cx="960" cy="450" r="1050">
+      <stop offset="0%"   stop-color="transparent"/>
+      <stop offset="65%"  stop-color="#0E1830" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0E1830" stop-opacity="0.58"/>
+    </radialGradient>
+    <filter id="b1"><feGaussianBlur stdDeviation="90"/></filter>
+    <filter id="b2"><feGaussianBlur stdDeviation="130"/></filter>
+  </defs>
+
+  <rect width="1920" height="900" fill="url(#base)"/>
+
+  <circle cx="420"  cy="260"  r="430" fill="#1A3058" opacity="0.55" filter="url(#b2)"/>
+  <circle cx="1500" cy="640"  r="380" fill="#203560" opacity="0.45" filter="url(#b2)"/>
+  <circle cx="960"  cy="90"   r="300" fill="#1C3055" opacity="0.40" filter="url(#b1)"/>
+
+  <circle cx="1200" cy="380"  r="280" fill="#9A7828" opacity="0.32" filter="url(#b1)"/>
+  <circle cx="700"  cy="520"  r="200" fill="#B09030" opacity="0.28" filter="url(#b1)"/>
+
+  <circle cx="320"  cy="120"  r="2"   fill="#C9A84C" opacity="0.80"/>
+  <circle cx="580"  cy="80"   r="1.5" fill="#C9A84C" opacity="0.65"/>
+  <circle cx="860"  cy="140"  r="2.5" fill="#D4B860" opacity="0.75"/>
+  <circle cx="1100" cy="60"   r="1.5" fill="#C9A84C" opacity="0.60"/>
+  <circle cx="1380" cy="110"  r="2"   fill="#C9A84C" opacity="0.70"/>
+  <circle cx="1620" cy="90"   r="1.5" fill="#D4B860" opacity="0.65"/>
+  <circle cx="1800" cy="150"  r="2"   fill="#C9A84C" opacity="0.55"/>
+  <circle cx="180"  cy="200"  r="1.5" fill="#C9A84C" opacity="0.50"/>
+  <circle cx="740"  cy="50"   r="1"   fill="#D4B860" opacity="0.70"/>
+  <circle cx="1260" cy="180"  r="1.5" fill="#C9A84C" opacity="0.60"/>
+  <circle cx="1540" cy="55"   r="2"   fill="#C9A84C" opacity="0.65"/>
+  <circle cx="480"  cy="170"  r="1"   fill="#D4B860" opacity="0.55"/>
+
+  <line x1="0" y1="450" x2="1920" y2="450" stroke="#C9A84C" stroke-width="0.5" opacity="0.14"/>
+
+  <rect width="1920" height="900" fill="url(#vig)"/>
+</svg>

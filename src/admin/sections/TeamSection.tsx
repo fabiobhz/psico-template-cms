@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useState } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { Field } from "../components/Field";
@@ -7,7 +14,7 @@ import { Plus, Trash2 } from "lucide-react";
 
 const newMember = (): TeamMember => ({
   id: String(Date.now()),
-  name: "Novo Profissional",
+  name: "New Team Member",
   crp: "",
   description: "",
   image: "",
@@ -37,12 +44,12 @@ export const TeamSection = () => {
   return (
     <div>
       <Field
-        label="Título da seção"
+        label="Section title"
         value={draft.sectionTitle}
         onChange={(v) => setDraft((d) => ({ ...d, sectionTitle: v }))}
       />
       <Field
-        label="Subtítulo (opcional)"
+        label="Subtitle (optional)"
         value={draft.sectionSubtitle}
         onChange={(v) => setDraft((d) => ({ ...d, sectionSubtitle: v }))}
       />
@@ -52,12 +59,12 @@ export const TeamSection = () => {
           <div key={member.id} className="border border-[#e5e0d8] rounded-xl p-4 bg-[#faf8f6]">
             <div className="flex items-center justify-between mb-3">
               <p className="text-xs font-semibold text-[#8fa68c] uppercase tracking-wider">
-                Profissional {idx + 1}
+                Member {idx + 1}
               </p>
               <button
                 onClick={() => removeMember(member.id)}
                 className="text-[#c0897a] hover:text-[#a06050] transition-colors"
-                title="Remover"
+                title="Remove"
               >
                 <Trash2 size={14} />
               </button>
@@ -74,12 +81,12 @@ export const TeamSection = () => {
               )}
               <div className="flex-1 min-w-0">
                 <Field
-                  label="Nome"
+                  label="Name"
                   value={member.name}
                   onChange={(v) => updateMember(member.id, "name", v)}
                 />
                 <Field
-                  label="Cargo ou registro"
+                  label="Title or registration"
                   value={member.crp}
                   onChange={(v) => updateMember(member.id, "crp", v)}
                 />
@@ -87,23 +94,23 @@ export const TeamSection = () => {
             </div>
 
             <Field
-              label="Foto (URL ou caminho)"
+              label="Photo (URL or path)"
               value={member.image}
               onChange={(v) => updateMember(member.id, "image", v)}
-              placeholder="/assets/foto.jpg"
+              placeholder="/assets/photo.jpg"
             />
             <Field
-              label="Descrição / Bio"
+              label="Bio / Description"
               value={member.description}
               onChange={(v) => updateMember(member.id, "description", v)}
               multiline
               rows={4}
             />
             <Field
-              label="WhatsApp (somente números, ex: 5531999999999)"
+              label="WhatsApp (digits only, e.g. 15551234567)"
               value={member.whatsapp}
               onChange={(v) => updateMember(member.id, "whatsapp", v)}
-              placeholder="5531999999999"
+              placeholder="15551234567"
             />
           </div>
         ))}
@@ -114,7 +121,7 @@ export const TeamSection = () => {
         className="mt-4 w-full flex items-center justify-center gap-2 border-2 border-dashed border-[#c8c0b5] rounded-xl py-3 text-sm text-[#7a6e5f] hover:border-[#8fa68c] hover:text-[#8fa68c] transition-colors"
       >
         <Plus size={16} />
-        Adicionar profissional
+        Add team member
       </button>
 
       <SaveBar isDirty={isDirty} onSave={save} onDiscard={discard} />

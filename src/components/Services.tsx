@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { Heart, Brain, Users, Globe, Star, Leaf, Sun, Moon, Smile, Shield } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
@@ -20,7 +27,7 @@ const Services = () => {
   const { services } = content;
 
   return (
-    <section className="py-28 md:py-36 bg-secondary/50">
+    <section id="services" className="py-28 md:py-36 bg-secondary/50">
       <div className="container max-w-5xl">
         <div className="text-center mb-16">
           <AnimatedSection>

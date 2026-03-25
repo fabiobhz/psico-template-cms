@@ -1,8 +1,16 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 export interface ColorPalette {
   id: string;
   name: string;
   description: string;
   preview: string[];
+  heroImage: string;
   vars: {
     primary: string;
     primaryLight: string;
@@ -36,9 +44,10 @@ export interface SiteTheme {
 export const colorPalettes: ColorPalette[] = [
   {
     id: "sage-earth",
-    name: "Sálvia & Terra",
-    description: "Verde sálvia com tons terrosos — calmante e acolhedor",
+    name: "Sage & Earth",
+    description: "Sage green with earthy tones — calming and welcoming",
     preview: ["#5C7A5C", "#8B7355", "#E8E4DC", "#2D3B2D"],
+    heroImage: "/assets/hero-sage-earth.svg",
     vars: {
       primary: "hsl(120, 14%, 41%)",
       primaryLight: "hsl(120, 14%, 55%)",
@@ -54,9 +63,10 @@ export const colorPalettes: ColorPalette[] = [
   },
   {
     id: "lavender-stone",
-    name: "Lavanda & Pedra",
-    description: "Lavanda suave com cinza pedra — sofisticado e sereno",
+    name: "Lavender & Stone",
+    description: "Soft lavender with stone gray — sophisticated and serene",
     preview: ["#7C6B9E", "#8A8A8A", "#F5F3FA", "#3D3450"],
+    heroImage: "/assets/hero-lavender-stone.svg",
     vars: {
       primary: "hsl(265, 22%, 52%)",
       primaryLight: "hsl(265, 22%, 68%)",
@@ -72,9 +82,10 @@ export const colorPalettes: ColorPalette[] = [
   },
   {
     id: "ocean-sand",
-    name: "Oceano & Areia",
-    description: "Azul profundo com bege areia — confiante e tranquilo",
+    name: "Ocean & Sand",
+    description: "Deep blue with sandy beige — confident and tranquil",
     preview: ["#2E6B8A", "#C4A882", "#EEF4F7", "#1A3F52"],
+    heroImage: "/assets/hero-ocean-sand.svg",
     vars: {
       primary: "hsl(200, 50%, 36%)",
       primaryLight: "hsl(200, 45%, 52%)",
@@ -90,9 +101,10 @@ export const colorPalettes: ColorPalette[] = [
   },
   {
     id: "rose-warm-gray",
-    name: "Rosa & Cinza Quente",
-    description: "Rosa envelhecido com cinza quente — delicado e elegante",
+    name: "Rose & Warm Gray",
+    description: "Dusty rose with warm gray — delicate and elegant",
     preview: ["#A8716A", "#9E8E8A", "#FAF5F4", "#5C3532"],
+    heroImage: "/assets/hero-rose-warm-gray.svg",
     vars: {
       primary: "hsl(5, 25%, 54%)",
       primaryLight: "hsl(5, 25%, 70%)",
@@ -108,9 +120,10 @@ export const colorPalettes: ColorPalette[] = [
   },
   {
     id: "forest-cream",
-    name: "Floresta & Creme",
-    description: "Verde floresta profundo com creme — natural e equilibrado",
+    name: "Forest & Cream",
+    description: "Deep forest green with cream — natural and balanced",
     preview: ["#2D5A3D", "#C8B89A", "#F7F4EE", "#1A3625"],
+    heroImage: "/assets/hero-forest-cream.svg",
     vars: {
       primary: "hsl(145, 34%, 26%)",
       primaryLight: "hsl(145, 28%, 42%)",
@@ -126,9 +139,10 @@ export const colorPalettes: ColorPalette[] = [
   },
   {
     id: "midnight-gold",
-    name: "Meia-noite & Ouro",
-    description: "Azul meia-noite com dourado — premium e inspirador",
+    name: "Midnight & Gold",
+    description: "Midnight blue with gold — premium and inspiring",
     preview: ["#1E2B4A", "#C9A84C", "#F4F5F8", "#0D1529"],
+    heroImage: "/assets/hero-midnight-gold.svg",
     vars: {
       primary: "hsl(222, 42%, 20%)",
       primaryLight: "hsl(222, 35%, 36%)",
@@ -147,8 +161,8 @@ export const colorPalettes: ColorPalette[] = [
 export const fontPairings: FontPairing[] = [
   {
     id: "classic",
-    name: "Clássico",
-    description: "Cormorant Garamond + Outfit — elegância atemporal",
+    name: "Classic",
+    description: "Cormorant Garamond + Outfit — timeless elegance",
     headingFont: "Cormorant Garamond",
     bodyFont: "Outfit",
     googleFontsUrl:
@@ -158,8 +172,8 @@ export const fontPairings: FontPairing[] = [
   },
   {
     id: "modern-serif",
-    name: "Serif Moderno",
-    description: "Playfair Display + Inter — sofisticado e contemporâneo",
+    name: "Modern Serif",
+    description: "Playfair Display + Inter — sophisticated and contemporary",
     headingFont: "Playfair Display",
     bodyFont: "Inter",
     googleFontsUrl:
@@ -170,7 +184,7 @@ export const fontPairings: FontPairing[] = [
   {
     id: "editorial",
     name: "Editorial",
-    description: "EB Garamond + Lato — refinado e legível",
+    description: "EB Garamond + Lato — refined and readable",
     headingFont: "EB Garamond",
     bodyFont: "Lato",
     googleFontsUrl:
@@ -180,8 +194,8 @@ export const fontPairings: FontPairing[] = [
   },
   {
     id: "contemporary",
-    name: "Contemporâneo",
-    description: "Libre Baskerville + Source Sans 3 — sólido e acessível",
+    name: "Contemporary",
+    description: "Libre Baskerville + Source Sans 3 — solid and accessible",
     headingFont: "Libre Baskerville",
     bodyFont: "Source Sans 3",
     googleFontsUrl:
@@ -191,8 +205,8 @@ export const fontPairings: FontPairing[] = [
   },
   {
     id: "refined-sans",
-    name: "Sans Refinado",
-    description: "Josefin Sans + Raleway — moderno e geométrico",
+    name: "Refined Sans",
+    description: "Josefin Sans + Raleway — modern and geometric",
     headingFont: "Josefin Sans",
     bodyFont: "Raleway",
     googleFontsUrl:
@@ -202,8 +216,8 @@ export const fontPairings: FontPairing[] = [
   },
   {
     id: "humanist",
-    name: "Humanista",
-    description: "Merriweather + Nunito — caloroso e humanizado",
+    name: "Humanist",
+    description: "Merriweather + Nunito — warm and human",
     headingFont: "Merriweather",
     bodyFont: "Nunito",
     googleFontsUrl:

@@ -1,10 +1,17 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
 import type { SiteContent } from "@/config/defaultContent";
 import { defaultContent } from "@/config/defaultContent";
 import type { SiteTheme, ColorPalette, FontPairing } from "@/config/defaultTheme"; // ColorPalette, FontPairing used by derived values below
 import { defaultTheme, colorPalettes, fontPairings, applyThemeVars } from "@/config/defaultTheme";
 
-const STORAGE_KEY = "psico-template-config-v3";
+const STORAGE_KEY = "psico-template-config-v8";
 
 interface SiteConfig {
   content: SiteContent;
@@ -107,10 +114,32 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
   );
 
   const updateTheme = useCallback((updates: Partial<SiteTheme>) => {
-    setConfig((prev) => ({
-      ...prev,
-      theme: { ...prev.theme, ...updates },
-    }));
+    setConfig((prev) => {
+      const newTheme = { ...prev.theme, ...updates };
+      let newContent = prev.content;
+
+      // If the palette changed and the current hero is a palette hero (or the legacy default), swap it automatically.
+      // A "palette hero" is any /assets/hero-*.svg file or the legacy hero-bg.jpg.
+      if (updates.colorPaletteId) {
+        const paletteHeroes = colorPalettes.map((p) => p.heroImage);
+        const currentBg = prev.content.hero.backgroundImage;
+        const isAutoHero =
+          paletteHeroes.includes(currentBg) ||
+          /^\/assets\/hero-[^/]+\.svg$/.test(currentBg) ||
+          currentBg === "/assets/hero-bg.jpg";
+        if (isAutoHero) {
+          const newPalette = colorPalettes.find((p) => p.id === updates.colorPaletteId);
+          if (newPalette) {
+            newContent = {
+              ...prev.content,
+              hero: { ...prev.content.hero, backgroundImage: newPalette.heroImage },
+            };
+          }
+        }
+      }
+
+      return { theme: newTheme, content: newContent };
+    });
   }, []);
 
   const resetToDefaults = useCallback(() => {

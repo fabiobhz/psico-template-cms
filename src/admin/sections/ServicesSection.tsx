@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useState } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { Field } from "../components/Field";
@@ -26,12 +33,12 @@ export const ServicesSection = () => {
   return (
     <div>
       <Field
-        label="Título da seção"
+        label="Section title"
         value={draft.sectionTitle}
         onChange={(v) => setDraft((d) => ({ ...d, sectionTitle: v }))}
       />
       <Field
-        label="Subtítulo (opcional)"
+        label="Subtitle (optional)"
         value={draft.sectionSubtitle}
         onChange={(v) => setDraft((d) => ({ ...d, sectionSubtitle: v }))}
       />
@@ -39,11 +46,11 @@ export const ServicesSection = () => {
         {draft.items.map((service, idx) => (
           <div key={service.id} className="border border-[#e5e0d8] rounded-xl p-4 bg-[#faf8f6]">
             <p className="text-xs font-semibold text-[#8fa68c] uppercase tracking-wider mb-3">
-              Serviço {idx + 1}
+              Service {idx + 1}
             </p>
             <div className="mb-3">
               <label className="block text-xs font-medium text-[#7a6e5f] mb-1.5 tracking-wide uppercase">
-                Ícone
+                Icon
               </label>
               <div className="flex flex-wrap gap-1.5">
                 {ICON_OPTIONS.map((icon) => (
@@ -62,12 +69,12 @@ export const ServicesSection = () => {
               </div>
             </div>
             <Field
-              label="Título"
+              label="Title"
               value={service.title}
               onChange={(v) => updateService(service.id, "title", v)}
             />
             <Field
-              label="Descrição"
+              label="Description"
               value={service.description}
               onChange={(v) => updateService(service.id, "description", v)}
               multiline

@@ -1,8 +1,15 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-const CONSENT_KEY = "vinculo_cookie_consent";
+const CONSENT_KEY = "site_cookie_consent";
 
 type ConsentValue = "granted" | "denied";
 
@@ -53,17 +60,17 @@ const CookieConsent = () => {
         >
           <div className="container py-4 flex flex-col sm:flex-row items-center gap-4 justify-between">
             <p className="text-body text-xs text-muted-foreground text-center sm:text-left leading-relaxed max-w-2xl">
-              Utilizamos cookies para melhorar a sua experiência e exibir anúncios relevantes.
-              Ao aceitar, concorda com o uso de cookies de publicidade conforme a nossa{" "}
+              We use cookies to improve your experience and display relevant ads.
+              By accepting, you agree to the use of advertising cookies as described in our{" "}
               <Link
-                to="/politica-de-privacidade"
+                to="/privacy-policy"
                 className="underline underline-offset-2 hover:text-foreground transition-colors"
               >
-                política de privacidade
+                privacy policy
               </Link>
               .{" "}
               <span className="text-foreground/60">
-                (Este aviso aplica-se a utilizadores no Espaço Económico Europeu.)
+                (This notice applies to users in the European Economic Area.)
               </span>
             </p>
             <div className="flex gap-3 shrink-0">
@@ -71,13 +78,13 @@ const CookieConsent = () => {
                 onClick={handleDecline}
                 className="px-5 py-2 rounded-md text-xs font-body tracking-wider border border-border text-muted-foreground hover:bg-secondary transition-colors duration-200"
               >
-                Recusar
+                Decline
               </button>
               <button
                 onClick={handleAccept}
                 className="px-5 py-2 rounded-md text-xs font-body tracking-wider bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
               >
-                Aceitar cookies
+                Accept cookies
               </button>
             </div>
           </div>

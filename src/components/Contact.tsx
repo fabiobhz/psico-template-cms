@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useState, type FormEvent, type InvalidEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
@@ -12,25 +19,25 @@ const resetValidation = (
 const onInvalidText = (e: InvalidEvent<HTMLInputElement | HTMLTextAreaElement>) => {
   const el = e.currentTarget;
   if (el.validity.valueMissing) {
-    el.setCustomValidity("Por favor, preencha este campo.");
+    el.setCustomValidity("Please fill in this field.");
   } else {
-    el.setCustomValidity("Valor inválido.");
+    el.setCustomValidity("Invalid value.");
   }
 };
 
 const onInvalidEmail = (e: InvalidEvent<HTMLInputElement>) => {
   const el = e.currentTarget;
   if (el.validity.valueMissing) {
-    el.setCustomValidity("Por favor, preencha seu e-mail.");
+    el.setCustomValidity("Please fill in your email.");
   } else if (el.validity.typeMismatch) {
-    el.setCustomValidity("Por favor, insira um endereço de e-mail válido.");
+    el.setCustomValidity("Please enter a valid email address.");
   } else {
-    el.setCustomValidity("E-mail inválido.");
+    el.setCustomValidity("Invalid email.");
   }
 };
 
 const onInvalidSelect = (e: InvalidEvent<HTMLSelectElement>) => {
-  e.currentTarget.setCustomValidity("Por favor, selecione um profissional.");
+  e.currentTarget.setCustomValidity("Please select a team member.");
 };
 
 const Contact = () => {
@@ -39,10 +46,10 @@ const Contact = () => {
   const { contact, team } = content;
 
   const [form, setForm] = useState({
-    nome: "",
+    name: "",
     email: "",
-    profissional: "",
-    mensagem: "",
+    professional: "",
+    message: "",
   });
   const [sending, setSending] = useState(false);
 
@@ -50,7 +57,7 @@ const Contact = () => {
     e.preventDefault();
     if (!e.currentTarget.reportValidity()) return;
 
-    const selected = team.members.find((m) => m.name === form.profissional);
+    const selected = team.members.find((m) => m.name === form.professional);
     if (!selected) return;
 
     setSending(true);
@@ -59,22 +66,22 @@ const Contact = () => {
         contact.emailjsServiceId,
         contact.emailjsTemplateId,
         {
-          profissional: selected.name,
-          from_name: form.nome,
+          professional: selected.name,
+          from_name: form.name,
           from_email: form.email,
-          mensagem: form.mensagem,
+          message: form.message,
         },
         { publicKey: contact.emailjsPublicKey }
       );
-      navigate("/obrigado", { state: { fromForm: true } });
+      navigate("/thank-you", { state: { fromForm: true } });
     } catch (err: unknown) {
-      const detalhe =
+      const detail =
         typeof err === "object" && err !== null && "text" in err
           ? (err as { text: string }).text
           : JSON.stringify(err);
-      console.error("Erro ao enviar e-mail:", detalhe);
+      console.error("Error sending email:", detail);
       toast.error(
-        "Não foi possível enviar a mensagem. Por favor, tente novamente ou entre em contato pelo WhatsApp."
+        "Could not send your message. Please try again or reach us on WhatsApp."
       );
     } finally {
       setSending(false);
@@ -82,7 +89,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contato" className="py-28 md:py-36 bg-secondary/50">
+    <section id="contact" className="py-28 md:py-36 bg-secondary/50">
       <div className="container">
         <div className="mx-auto" style={{ maxWidth: "520px" }}>
           <div className="text-center mb-12">
@@ -108,9 +115,9 @@ const Contact = () => {
                 <input
                   type="text"
                   required
-                  placeholder="Ex: João Silva"
-                  value={form.nome}
-                  onChange={(e) => setForm({ ...form, nome: e.target.value })}
+                  placeholder="e.g. Jane Smith"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
                   onInvalid={onInvalidText}
                   onInput={resetValidation}
                   className="w-full bg-background border border-border rounded-md px-4 py-3 text-foreground text-sm font-body focus:outline-none focus:ring-1 focus:ring-ring transition-colors placeholder:text-muted-foreground/50"
@@ -124,7 +131,7 @@ const Contact = () => {
                 <input
                   type="email"
                   required
-                  placeholder="Ex: joao@email.com"
+                  placeholder="e.g. jane@email.com"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   onInvalid={onInvalidEmail}
@@ -139,16 +146,16 @@ const Contact = () => {
                 </label>
                 <select
                   required
-                  value={form.profissional}
+                  value={form.professional}
                   onChange={(e) => {
                     e.currentTarget.setCustomValidity("");
-                    setForm({ ...form, profissional: e.target.value });
+                    setForm({ ...form, professional: e.target.value });
                   }}
                   onInvalid={onInvalidSelect}
                   className="w-full bg-background border border-border rounded-md px-4 py-3 text-foreground text-sm font-body focus:outline-none focus:ring-1 focus:ring-ring transition-colors appearance-none cursor-pointer"
                 >
                   <option value="" disabled>
-                    Escolha um profissional…
+                    Choose a team member…
                   </option>
                   {team.members.map((m) => (
                     <option key={m.id} value={m.name}>
@@ -165,9 +172,9 @@ const Contact = () => {
                 <textarea
                   required
                   rows={5}
-                  placeholder="Descreva brevemente o que você está buscando…"
-                  value={form.mensagem}
-                  onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
+                  placeholder="Briefly describe what you're looking for…"
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
                   onInvalid={onInvalidText}
                   onInput={resetValidation}
                   className="w-full bg-background border border-border rounded-md px-4 py-3 text-foreground text-sm font-body focus:outline-none focus:ring-1 focus:ring-ring transition-colors resize-none placeholder:text-muted-foreground/50"
@@ -179,7 +186,7 @@ const Contact = () => {
                 disabled={sending}
                 className="w-full bg-primary text-primary-foreground py-3 rounded-md text-sm font-body tracking-wider hover:bg-primary/90 transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {sending ? "Enviando…" : contact.submitText}
+                {sending ? "Sending…" : contact.submitText}
               </button>
             </form>
           </AnimatedSection>

@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useState } from "react";
 import { Save, Undo2, CheckCircle } from "lucide-react";
 
@@ -19,24 +26,22 @@ export const SaveBar = ({ isDirty, onSave, onDiscard }: Props) => {
 
   return (
     <div className="mt-5 pt-4 border-t border-[#e5e0d8] flex items-center justify-between min-h-[36px]">
-      {/* Status label */}
       <span className="flex items-center gap-1.5 text-xs font-medium">
         {saved ? (
           <span className="flex items-center gap-1.5 text-[#8fa68c]">
             <CheckCircle size={13} />
-            Seção salva com sucesso!
+            Section saved!
           </span>
         ) : isDirty ? (
           <span className="flex items-center gap-1.5 text-[#c0897a]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c0897a] inline-block animate-pulse" />
-            Alterações não salvas
+            Unsaved changes
           </span>
         ) : (
-          <span className="text-[#b0a898]">Sem alterações pendentes</span>
+          <span className="text-[#b0a898]">No pending changes</span>
         )}
       </span>
 
-      {/* Buttons — always visible */}
       <div className="flex items-center gap-2">
         <button
           onClick={onDiscard}
@@ -48,7 +53,7 @@ export const SaveBar = ({ isDirty, onSave, onDiscard }: Props) => {
           }`}
         >
           <Undo2 size={12} />
-          Descartar
+          Discard
         </button>
         <button
           onClick={handleSave}
@@ -60,7 +65,7 @@ export const SaveBar = ({ isDirty, onSave, onDiscard }: Props) => {
           }`}
         >
           <Save size={12} />
-          Salvar seção
+          Save section
         </button>
       </div>
     </div>

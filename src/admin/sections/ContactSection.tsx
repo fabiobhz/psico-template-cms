@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useState } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { Field } from "../components/Field";
@@ -17,44 +24,44 @@ export const ContactSection = () => {
   return (
     <div>
       <Field
-        label="Título da seção"
+        label="Section title"
         value={draft.sectionTitle}
         onChange={(v) => update("sectionTitle", v)}
       />
       <Field
-        label="Subtítulo (opcional)"
+        label="Subtitle (optional)"
         value={draft.sectionSubtitle}
         onChange={(v) => update("sectionSubtitle", v)}
       />
       <Field
-        label="Label do campo Nome"
+        label="Name field label"
         value={draft.namePlaceholder}
         onChange={(v) => update("namePlaceholder", v)}
       />
       <Field
-        label="Label do campo E-mail"
+        label="Email field label"
         value={draft.emailPlaceholder}
         onChange={(v) => update("emailPlaceholder", v)}
       />
       <Field
-        label="Label seleção de profissional"
+        label="Team member selector label"
         value={draft.professionalLabel}
         onChange={(v) => update("professionalLabel", v)}
       />
       <Field
-        label="Label campo mensagem"
+        label="Message field label"
         value={draft.messagePlaceholder}
         onChange={(v) => update("messagePlaceholder", v)}
       />
       <Field
-        label="Texto do botão enviar"
+        label="Submit button text"
         value={draft.submitText}
         onChange={(v) => update("submitText", v)}
       />
 
       <div className="mt-6 p-4 bg-[#f0ede8] rounded-xl border border-[#e5e0d8]">
         <p className="text-xs font-semibold text-[#7a6e5f] uppercase tracking-wider mb-3">
-          Configuração EmailJS
+          EmailJS Configuration
         </p>
         <Field
           label="Service ID"

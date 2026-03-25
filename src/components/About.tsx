@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import AnimatedSection from "./AnimatedSection";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 
@@ -6,7 +13,7 @@ const About = () => {
   const { about } = content;
 
   return (
-    <section id="sobre" className="py-28 md:py-36">
+    <section id="about" className="py-28 md:py-36">
       <div className="container max-w-3xl text-center">
         <AnimatedSection>
           <h2 className="heading-display text-4xl md:text-5xl text-foreground mb-4">

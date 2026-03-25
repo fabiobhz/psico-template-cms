@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useState, useRef } from "react";
 import {
   Palette,
@@ -12,6 +19,8 @@ import {
   ExternalLink,
   X,
   MonitorSmartphone,
+  Globe,
+  MessageSquare,
 } from "lucide-react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { SectionCard } from "./components/SectionCard";
@@ -22,6 +31,8 @@ import { ServicesSection } from "./sections/ServicesSection";
 import { TeamSection } from "./sections/TeamSection";
 import { ContactSection } from "./sections/ContactSection";
 import { SiteSection } from "./sections/SiteSection";
+import { SocialSection } from "./sections/SocialSection";
+import { TestimonialsSection } from "./sections/TestimonialsSection";
 
 export const AdminPanel = () => {
   const { resetToDefaults, exportConfig, importConfig } = useSiteConfig();
@@ -43,7 +54,7 @@ export const AdminPanel = () => {
     a.download = "site-config.json";
     a.click();
     URL.revokeObjectURL(url);
-    showToast("Configuração exportada com sucesso!");
+    showToast("Configuration exported successfully!");
   };
 
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,16 +64,16 @@ export const AdminPanel = () => {
     reader.onload = (ev) => {
       const text = ev.target?.result as string;
       const ok = importConfig(text);
-      showToast(ok ? "Configuração importada!" : "Arquivo inválido.", ok ? "ok" : "err");
+      showToast(ok ? "Configuration imported!" : "Invalid file.", ok ? "ok" : "err");
     };
     reader.readAsText(file);
     e.target.value = "";
   };
 
   const handleReset = () => {
-    if (confirm("Redefinir todas as configurações para o padrão? Esta ação não pode ser desfeita.")) {
+    if (confirm("Reset all settings to default? This action cannot be undone.")) {
       resetToDefaults();
-      showToast("Configurações redefinidas.");
+      showToast("Settings reset to default.");
     }
   };
 
@@ -89,8 +100,8 @@ export const AdminPanel = () => {
               <Settings size={14} color="white" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-[#3d3530]">Painel CMS</p>
-              <p className="text-[10px] text-[#9e9086]">Personalização do site</p>
+              <p className="text-sm font-semibold text-[#3d3530]">CMS Panel</p>
+              <p className="text-[10px] text-[#9e9086]">Site customization</p>
             </div>
           </div>
 
@@ -103,14 +114,14 @@ export const AdminPanel = () => {
               className="flex items-center gap-1.5 text-xs text-[#7a6e5f] border border-[#ddd8d2] rounded-lg px-3 py-1.5 hover:bg-[#f0ede8] transition-colors"
             >
               <ExternalLink size={13} />
-              Ver site
+              View site
             </a>
             <button
               onClick={handleExport}
               className="flex items-center gap-1.5 text-xs text-white bg-[#8fa68c] rounded-lg px-3 py-1.5 hover:bg-[#7a9278] transition-colors"
             >
               <Download size={13} />
-              Exportar
+              Export
             </button>
           </div>
         </div>
@@ -125,14 +136,14 @@ export const AdminPanel = () => {
             className="flex items-center gap-1.5 text-xs text-[#7a6e5f] border border-[#ddd8d2] rounded-lg px-3 py-1.5 bg-white hover:bg-[#f0ede8] transition-colors"
           >
             <Upload size={12} />
-            Importar config
+            Import config
           </button>
           <button
             onClick={handleReset}
             className="flex items-center gap-1.5 text-xs text-[#c0897a] border border-[#e5cfc9] rounded-lg px-3 py-1.5 bg-white hover:bg-[#faf0ee] transition-colors"
           >
             <RotateCcw size={12} />
-            Redefinir padrão
+            Reset defaults
           </button>
           <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} className="hidden" />
         </div>
@@ -141,44 +152,52 @@ export const AdminPanel = () => {
         <div className="bg-[#edf3ed] border border-[#c8ddc8] rounded-xl px-4 py-3 text-xs text-[#4a6e4a] flex items-start gap-2">
           <MonitorSmartphone size={14} className="flex-shrink-0 mt-0.5" />
           <span>
-            Edite o conteúdo de cada seção e clique em <strong>Salvar seção</strong>. Use{" "}
-            <strong>Pré-visualizar</strong> para ver as alterações em tempo real numa nova aba — ela
-            atualiza automaticamente após cada salvamento.
+            Edit each section's content and click <strong>Save section</strong>. Use{" "}
+            <strong>Preview</strong> to see changes in real time in a new tab — it updates
+            automatically after each save.
           </span>
         </div>
 
-        <SectionCard title="Tema — Cores & Fontes" icon={<Palette size={16} />} defaultOpen>
+        <SectionCard title="Theme — Colors & Fonts" icon={<Palette size={16} />} defaultOpen>
           <ThemeSection />
         </SectionCard>
 
-        <SectionCard title="Hero — Tela inicial" icon={<LayoutTemplate size={16} />} defaultOpen>
+        <SectionCard title="Hero — Banner" icon={<LayoutTemplate size={16} />} defaultOpen>
           <HeroSection />
         </SectionCard>
 
-        <SectionCard title="Sobre nós" icon={<LayoutTemplate size={16} />}>
+        <SectionCard title="About" icon={<LayoutTemplate size={16} />}>
           <AboutSection />
         </SectionCard>
 
-        <SectionCard title="Especialidades / Serviços" icon={<Briefcase size={16} />}>
+        <SectionCard title="Services / Specialties" icon={<Briefcase size={16} />}>
           <ServicesSection />
         </SectionCard>
 
-        <SectionCard title="Equipe / Profissionais" icon={<Users size={16} />}>
+        <SectionCard title="Team / Professionals" icon={<Users size={16} />}>
           <TeamSection />
         </SectionCard>
 
-        <SectionCard title="Contato & Formulário" icon={<Mail size={16} />}>
+        <SectionCard title="Reviews & Testimonials" icon={<MessageSquare size={16} />}>
+          <TestimonialsSection />
+        </SectionCard>
+
+        <SectionCard title="Contact & Form" icon={<Mail size={16} />}>
           <ContactSection />
         </SectionCard>
 
-        <SectionCard title="Site, Navegação & Rodapé" icon={<Settings size={16} />}>
+        <SectionCard title="Site, Navigation & Footer" icon={<Settings size={16} />}>
           <SiteSection />
         </SectionCard>
 
+        <SectionCard title="Redes Sociais" icon={<Globe size={16} />}>
+          <SocialSection />
+        </SectionCard>
+
         <p className="text-center text-[10px] text-[#b0a898] pb-6">
-          As alterações são salvas automaticamente após clicar em "Salvar seção".
+          Changes are saved automatically after clicking "Save section".
           <br />
-          Use "Exportar" para guardar o arquivo de configuração definitivo.
+          Use "Export" to save the final configuration file.
         </p>
       </main>
 
@@ -188,7 +207,7 @@ export const AdminPanel = () => {
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#3d3530] text-white text-sm font-medium px-5 py-3 rounded-full shadow-xl hover:bg-[#2a2520] transition-all duration-200 hover:scale-105 active:scale-95"
       >
         <MonitorSmartphone size={16} />
-        Pré-visualizar
+        Preview
       </button>
 
       {/* Toast */}

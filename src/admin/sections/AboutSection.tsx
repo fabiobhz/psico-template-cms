@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { useState } from "react";
 import { useSiteConfig } from "@/contexts/SiteConfigContext";
 import { Field } from "../components/Field";
@@ -17,26 +24,26 @@ export const AboutSection = () => {
   return (
     <div>
       <Field
-        label="Título da seção"
+        label="Section title"
         value={draft.sectionTitle}
         onChange={(v) => update("sectionTitle", v)}
       />
       <Field
-        label="Parágrafo 1"
+        label="Paragraph 1"
         value={draft.paragraph1}
         onChange={(v) => update("paragraph1", v)}
         multiline
         rows={4}
       />
       <Field
-        label="Parágrafo 2"
+        label="Paragraph 2"
         value={draft.paragraph2}
         onChange={(v) => update("paragraph2", v)}
         multiline
         rows={4}
       />
       <Field
-        label="Parágrafo 3 (opcional)"
+        label="Paragraph 3 (optional)"
         value={draft.paragraph3}
         onChange={(v) => update("paragraph3", v)}
         multiline

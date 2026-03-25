@@ -1,3 +1,10 @@
+/**
+ * Product: Fagom Professional Template
+ * Author: Fagom
+ * License: Single Use License (EULA)
+ * Copyright (c) 2026 Fagom. All rights reserved.
+ */
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -22,7 +29,7 @@ const PrivacyPolicy = () => {
           transition={{ duration: 0.7 }}
           className="heading-display text-4xl md:text-5xl text-foreground mb-4"
         >
-          Política de Privacidade
+          Privacy Policy
         </motion.h1>
         <motion.div
           initial={{ scaleX: 0 }}
@@ -36,87 +43,83 @@ const PrivacyPolicy = () => {
           transition={{ duration: 0.7, delay: 0.7 }}
           className="text-body text-xs text-muted-foreground mt-6"
         >
-          Última atualização: março de 2026
+          Last updated: March 2026
         </motion.p>
       </div>
 
       {/* Content */}
       <div className="container max-w-3xl py-16 md:py-24 px-6">
 
-        <Section title="1. Quem somos">
+        <Section title="1. Who we are">
           <p>
-            A <strong className="text-foreground">Vínculo Psicologia</strong> é uma clínica de psicologia que oferece
-            atendimento psicoterapêutico online, especialmente para brasileiros residentes no exterior. Somos os
-            responsáveis pelo tratamento dos seus dados pessoais recolhidos através do site{" "}
-            <span className="text-foreground">vinculo-psicologia.com.br</span>.
-          </p>
-          <p>
-            Para quaisquer questões relacionadas com a sua privacidade, pode contactar-nos através do formulário
-            disponível no nosso site ou diretamente com um dos nossos profissionais pelo WhatsApp.
+            <strong className="text-foreground">[Your Business Name]</strong> is responsible for the
+            personal data collected through this website. For any privacy-related questions, please
+            contact us via the contact form on our site or directly through WhatsApp.
           </p>
         </Section>
 
-        <Section title="2. Dados que recolhemos">
-          <p>Recolhemos apenas os dados estritamente necessários para prestar os nossos serviços:</p>
+        <Section title="2. Data we collect">
+          <p>We collect only the data strictly necessary to provide our services:</p>
           <ul className="list-disc list-inside space-y-1 pl-2">
             <li>
-              <strong className="text-foreground">Formulário de contacto:</strong> nome completo, endereço de
-              e-mail e mensagem que nos envia voluntariamente.
+              <strong className="text-foreground">Contact form:</strong> full name, email address,
+              and the message you voluntarily submit.
             </li>
             <li>
-              <strong className="text-foreground">Cookies de publicidade</strong> (apenas com o seu consentimento
-              expresso): identificadores anónimos utilizados pelo Google Ads para apresentar anúncios relevantes.
+              <strong className="text-foreground">Advertising cookies</strong> (only with your
+              explicit consent): anonymous identifiers used by Google Ads to display relevant
+              advertisements.
             </li>
           </ul>
           <p>
-            Não recolhemos dados de saúde, dados de pagamento, dados de menores de 18 anos, nem qualquer
-            informação sensível através do site.
+            We do not collect health data, payment data, data from minors under 18, or any sensitive
+            information through this website.
           </p>
         </Section>
 
-        <Section title="3. Finalidade e base legal">
-          <p>Os seus dados são utilizados exclusivamente para:</p>
+        <Section title="3. Purpose and legal basis">
+          <p>Your data is used exclusively to:</p>
           <ul className="list-disc list-inside space-y-1 pl-2">
             <li>
-              <strong className="text-foreground">Responder ao seu contacto</strong> — base legal: execução de
-              diligências pré-contratuais / interesse legítimo (LGPD, Art. 7.º, V; RGPD, Art. 6.º, 1, b/f).
+              <strong className="text-foreground">Respond to your enquiry</strong> — legal basis:
+              pre-contractual steps / legitimate interest (GDPR Art. 6(1)(b)/(f)).
             </li>
             <li>
-              <strong className="text-foreground">Publicidade personalizada via Google Ads</strong> — base legal:
-              consentimento explícito (LGPD, Art. 7.º, I; RGPD, Art. 6.º, 1, a). Pode revogar o consentimento a
-              qualquer momento através do banner de cookies.
+              <strong className="text-foreground">Personalised advertising via Google Ads</strong> —
+              legal basis: explicit consent (GDPR Art. 6(1)(a)). You may withdraw consent at any
+              time via the cookie banner.
             </li>
           </ul>
         </Section>
 
-        <Section title="4. Partilha com terceiros">
-          <p>Os seus dados nunca são vendidos. São partilhados apenas com os seguintes prestadores de serviço:</p>
+        <Section title="4. Sharing with third parties">
+          <p>Your data is never sold. It is shared only with the following service providers:</p>
           <ul className="list-disc list-inside space-y-2 pl-2">
             <li>
-              <strong className="text-foreground">EmailJS</strong> (emailjs.com) — serviço de envio de e-mail
-              utilizado para encaminhar as mensagens do formulário de contacto para os nossos profissionais. O
-              EmailJS processa os dados como subcontratante, nos termos da sua{" "}
+              <strong className="text-foreground">EmailJS</strong> (emailjs.com) — email delivery
+              service used to forward contact form messages. EmailJS processes data as a
+              sub-processor under its{" "}
               <a
                 href="https://www.emailjs.com/legal/privacy-policy/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:text-foreground transition-colors"
               >
-                política de privacidade
+                privacy policy
               </a>
               .
             </li>
             <li>
-              <strong className="text-foreground">Google Ads / Google LLC</strong> — utilizado para exibir anúncios
-              apenas com o seu consentimento. A Google pode utilizar cookies para medir conversões e apresentar
-              anúncios personalizados. Consulte a{" "}
+              <strong className="text-foreground">Google Ads / Google LLC</strong> — used to display
+              ads only with your consent. Google may use cookies to measure conversions and show
+              personalised ads. See{" "}
               <a
                 href="https://policies.google.com/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:text-foreground transition-colors"
               >
-                política de privacidade da Google
+                Google's privacy policy
               </a>
               .
             </li>
@@ -125,55 +128,52 @@ const PrivacyPolicy = () => {
 
         <Section title="5. Cookies">
           <p>
-            Utilizamos apenas cookies essenciais ao funcionamento do site e, com o seu consentimento, cookies de
-            publicidade do Google Ads. Não utilizamos cookies de análise de tráfego (como o Google Analytics) sem
-            consentimento.
+            We use only cookies essential to site functionality and, with your consent, Google Ads
+            advertising cookies. We do not use analytics cookies without consent.
           </p>
           <p>
-            Pode aceitar ou recusar os cookies através do banner apresentado na sua primeira visita. A sua
-            preferência é guardada no seu navegador e pode ser alterada a qualquer momento apagando os dados de
-            navegação do site.
+            You can accept or decline cookies via the banner shown on your first visit. Your
+            preference is stored in your browser and can be changed at any time by clearing your
+            browsing data for this site.
           </p>
         </Section>
 
-        <Section title="6. Retenção de dados">
+        <Section title="6. Data retention">
           <p>
-            Os dados submetidos através do formulário de contacto são conservados apenas pelo tempo necessário para
-            responder à sua mensagem e, eventualmente, estabelecer uma relação terapêutica. Não mantemos bases de
-            dados de marketing nem listas de e-mail.
+            Data submitted through the contact form is kept only for as long as necessary to respond
+            to your message and, if applicable, to establish a service relationship. We do not
+            maintain marketing databases or email lists.
           </p>
         </Section>
 
-        <Section title="7. Os seus direitos">
-          <p>
-            Ao abrigo da Lei Geral de Proteção de Dados (LGPD — Lei n.º 13.709/2018) e do Regulamento Geral de
-            Proteção de Dados da União Europeia (RGPD), tem os seguintes direitos:
-          </p>
+        <Section title="7. Your rights">
+          <p>Under applicable data protection law (including GDPR), you have the right to:</p>
           <ul className="list-disc list-inside space-y-1 pl-2">
-            <li><strong className="text-foreground">Acesso</strong> — saber quais dados temos sobre si.</li>
-            <li><strong className="text-foreground">Retificação</strong> — corrigir dados incorretos.</li>
-            <li><strong className="text-foreground">Eliminação</strong> — solicitar a exclusão dos seus dados.</li>
-            <li><strong className="text-foreground">Portabilidade</strong> — receber os seus dados em formato legível.</li>
-            <li><strong className="text-foreground">Oposição</strong> — opor-se ao tratamento baseado em interesse legítimo.</li>
-            <li><strong className="text-foreground">Revogação do consentimento</strong> — retirar o consentimento para cookies a qualquer momento.</li>
+            <li><strong className="text-foreground">Access</strong> — know what data we hold about you.</li>
+            <li><strong className="text-foreground">Rectification</strong> — correct inaccurate data.</li>
+            <li><strong className="text-foreground">Erasure</strong> — request deletion of your data.</li>
+            <li><strong className="text-foreground">Portability</strong> — receive your data in a readable format.</li>
+            <li><strong className="text-foreground">Objection</strong> — object to processing based on legitimate interest.</li>
+            <li><strong className="text-foreground">Withdraw consent</strong> — revoke cookie consent at any time.</li>
           </ul>
           <p>
-            Para exercer qualquer um destes direitos, entre em contacto connosco através do formulário de contacto
-            do site ou pelo WhatsApp dos nossos profissionais.
+            To exercise any of these rights, contact us via the site's contact form or through
+            WhatsApp.
           </p>
         </Section>
 
-        <Section title="8. Segurança">
+        <Section title="8. Security">
           <p>
-            O nosso site utiliza o protocolo HTTPS para encriptar todas as comunicações. Os dados do formulário são
-            transmitidos de forma segura através do serviço EmailJS e não são armazenados em servidores próprios.
+            This site uses HTTPS to encrypt all communications. Form data is transmitted securely
+            via EmailJS and is not stored on our own servers.
           </p>
         </Section>
 
-        <Section title="9. Alterações a esta política">
+        <Section title="9. Changes to this policy">
           <p>
-            Podemos atualizar esta política periodicamente. Em caso de alterações significativas, publicaremos a
-            nova versão nesta página com a data de atualização. Recomendamos que consulte esta página regularmente.
+            We may update this policy periodically. For significant changes, we will publish the
+            new version on this page with an updated date. We recommend checking this page
+            regularly.
           </p>
         </Section>
 
@@ -183,7 +183,7 @@ const PrivacyPolicy = () => {
             to="/"
             className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-md text-sm font-body tracking-wider hover:bg-primary/90 transition-colors duration-300"
           >
-            Voltar ao início
+            Back to home
           </Link>
         </div>
 

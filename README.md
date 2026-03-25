@@ -13,6 +13,7 @@
 5. [Install the Project Dependencies](#5-install-the-project-dependencies)
 6. [Preview the Site Locally](#6-preview-the-site-locally)
 7. [Customise Your Site with the CMS](#7-customise-your-site-with-the-cms)
+   - [7.1 — Set Your Admin Password](#71--set-your-admin-password-important--do-this-before-publishing)
 8. [Set Up EmailJS (Contact Form)](#8-set-up-emailjs-contact-form)
 9. [Build the Site for Publishing](#9-build-the-site-for-publishing)
 10. [Choose a Hosting Provider](#10-choose-a-hosting-provider)
@@ -163,6 +164,8 @@ You should see the template website running on your computer. 🎉
 **Step 3** — To access the CMS panel (where you customise everything), go to:
 `http://localhost:8080/admin`
 
+During local development, the admin panel is open without a password. You will set a password before publishing your site (see Section 7.1 below).
+
 > **To stop the preview:** Go back to the Terminal and press `Ctrl + C`.
 
 ---
@@ -172,6 +175,52 @@ You should see the template website running on your computer. 🎉
 The CMS (Content Management System) is a built-in panel that lets you change every piece of text, image, and setting on the site — without touching any code.
 
 **Access the CMS:** While the site is running locally (`npm run dev`), go to `http://localhost:8080/admin` in your browser.
+
+---
+
+### 7.1 — Set Your Admin Password (important — do this before publishing)
+
+The admin panel at `/admin` is protected by a password so that only you can access it on your live site. You define this password yourself before building the site.
+
+**Step 1** — In your project folder, find the file called `.env.example`. Make a copy of it in the same folder and rename the copy to `.env` (remove the `.example` part entirely).
+
+> **On Windows:** In File Explorer, make sure "File name extensions" is visible (View → check "File name extensions"). Then rename the file to `.env` — the name starts with a dot and has no extension.
+>
+> **On Mac:** Files starting with a dot are hidden by default. In Finder, press `Cmd + Shift + .` to show hidden files, then rename the copy.
+
+**Step 2** — Open the `.env` file with a plain text editor (Notepad on Windows, TextEdit on Mac). You will see:
+
+```
+VITE_ADMIN_PASSWORD=your-strong-password-here
+```
+
+**Step 3** — Replace `your-strong-password-here` with your chosen password. For example:
+
+```
+VITE_ADMIN_PASSWORD=MyBusiness2026!
+```
+
+Save the file.
+
+**Step 4** — Run `npm run build` (Section 9) to compile the password into your site. From this point on, anyone who visits `/admin` on your live site will be asked for this password.
+
+> **Tips for a good password:**
+> - Use at least 10 characters
+> - Mix uppercase, lowercase, numbers, and symbols
+> - Avoid obvious words like your business name or "password"
+> - Write it down somewhere safe — if you forget it, you will need to update the `.env` file and rebuild
+
+**How login works on the live site:**
+
+1. You go to `yourdomain.com/admin`
+2. A login screen appears asking for the password
+3. You enter your password and click **Enter**
+4. You are logged in for the duration of your browser session
+5. To lock the panel, click the **Lock** button in the top-right corner of the admin header
+
+> **Security note:** The password is compiled into the site's code during the build. It protects the admin from casual visitors and is appropriate for personal and small-business use. Do not use this password for any other accounts.
+
+---
 
 ### How the CMS works
 
@@ -683,6 +732,21 @@ A: The CMS saves your content in your browser's local storage — it persists as
 
 **Q: The site shows the wrong language on the browser tab or in search results.**
 A: Go to the CMS → **"Site, Navigation & Footer"** and update the **SEO title** and **SEO description** fields. Save the section, then run `npm run build` and re-upload the `dist` folder.
+
+---
+
+**Q: I forgot my admin password. How do I reset it?**
+A: Open your `.env` file in a text editor, change the value of `VITE_ADMIN_PASSWORD` to a new password, save the file, and run `npm run build` again. Upload the new `dist` folder to your hosting — the new password will take effect immediately.
+
+---
+
+**Q: Someone found the `/admin` URL. Are they in?**
+A: No. They will see the password login screen and cannot proceed without the correct password. Make sure you chose a strong, non-obvious password when setting up your `.env` file (see Section 7.1).
+
+---
+
+**Q: I want to access the admin on my live site. How?**
+A: Go to `yourdomain.com/admin` in your browser. You will see the password login screen. Enter your admin password and click **Enter**. You will stay logged in for the rest of that browser session. To log out manually, click the **Lock** button in the top-right corner of the admin header.
 
 ---
 
